@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3h</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    function MyInput(){
+      const [inputText, setInputText] = React.useState('');
+      
+      function saveInputText(event){
+        setInputText(event.target.value);
+      }
+
+      function resetInput(){
+        setInputText('');
+      }
+
+      function exampleInput(event){
+        setInputText('Tiena');
+      }
+      return(
+        <>
+          <input 
+            onChange={saveInputText}
+            type="text" 
+            placeholder="Input a name" 
+            value={inputText}
+          />
+          <button onClick={resetInput}>Reset</button>
+          <button onClick={exampleInput}>Example</button>
+          <p>Hello {inputText}</p>
+        </>
+      );
+    }
+
+    function App(){
+      return(
+        <>
+          <MyInput />
+        </>
+      );
+    }
+    root.render(<App />);
+  </script>
+</body>
+</html>

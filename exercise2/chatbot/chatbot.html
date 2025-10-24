@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    //ChatInput Component
+    function ChatInput(){
+      return (
+        <>
+          <input type="text" placeholder="Send a message to Chatbot" size="30" />
+          <button>Send</button>
+        </>
+      );
+    }
+
+    //ChatMessage Component
+    function ChatMessage({message, sender}){
+      const returnValue = sender === 'user' 
+        ? (<div>
+            {message}
+            <img src="user.png" alt="user" width="50"/>
+        </div>)
+        : (<div>
+            <img src="robot.png" alt="robot" width="50"/>
+            {message}
+        </div>);
+      return returnValue;
+    }
+
+    function App(){
+      return(
+        <>
+          <ChatInput />
+          <ChatMessage message="hello" sender="user" />
+          <ChatMessage message="Hello! How can I help you?" sender="robot" />
+          <ChatMessage message="what time" sender="user" />
+          <ChatMessage message="Today is October 18" sender="robot" />
+
+        </>
+      );
+    }
+    
+    root.render(<App />);
+
+  </script>
+</body>
+</html>

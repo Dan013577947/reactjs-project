@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+  <title>4i</title>
+  <style>
+    body{
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    button{
+      background-color: rgb(25, 135, 84);
+      border: none;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .btn-container{
+      display: flex;
+      width: 360px;
+      height: 100vh;
+      justify-content: center;
+      background-color: rgb(222, 222, 222);
+      align-items: center;
+    }
+
+    .div-btn{
+      display: flex;
+      width: 260px;
+      justify-content: space-between;
+    }
+  </style>
+    
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    
+    function MainWindow(){
+      const [count, setCount] = React.useState(0);
+      const buttonClickRef = React.useRef(null);
+      
+      function buttonClick(){
+        setCount(count + 1);
+      }
+
+      function buttonReset(){
+        setCount(0);
+      }
+
+      function buttonAutoClick(){
+        const buttonClickElem = buttonClickRef.current;
+        setInterval(()=>{
+          buttonClickElem.click();
+        }, 1000);
+      }
+
+      return(
+        <div className="btn-container">
+          <div class="div-btn">
+            <button
+              onClick={buttonClick}
+              ref={buttonClickRef}
+            >Clicked {count} times</button>
+            <button
+              onClick={buttonReset}
+            >Reset</button>
+            <button
+              onClick={buttonAutoClick}
+            >Auto Click</button>
+          </div>
+          
+        </div>
+      );
+    }
+
+    function App(){
+      return(
+        <>
+          <MainWindow />
+        </>
+      );
+    }
+
+    root.render(<App />);
+  </script>
+</body>
+</html>

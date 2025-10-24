@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>4e</title>
+  <style>
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .div-email,
+    .div-password{
+      margin-bottom: 8px;
+    }
+
+    .email,
+    .password{
+      font-size: 11px;
+      padding: 5px 10px;
+      width: 160px;
+    }
+    
+    .login,
+    .sign-up{
+      background-color: rgb(0, 123, 255);
+      border: none;
+      padding: 10px 15px;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .sign-up{
+      margin-left: 5px;
+    }
+
+    .show{
+      margin-left: 8px;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    function MainWindow(){
+      const [showPassword, setShowPassword] = React.useState(false);
+
+      function showHandler(){
+        showPassword
+        ? setShowPassword(false)
+        : setShowPassword(true)
+      }
+
+      
+
+      return(
+        <div
+          className="div-login"
+        >
+          <h3 className="title">Hello, welcome to my website</h3>
+          <div class="div-email">
+            <input className="email" type="Email" placeholder="Email" />
+          </div>
+          <div class="div-password">
+            <input className="password" type={showPassword ? "text" : "Password"} placeholder="Password" />
+            <button className="show" onClick={showHandler}>Show</button>
+          </div>
+          <button className="login">Login</button>
+          <button className="sign-up">Sign Up</button>
+          
+        </div>
+      );
+    }
+
+    function App(){
+      return(
+        <>
+          <MainWindow />
+        </>
+      );
+    }
+
+    root.render(<App />);
+  </script>
+</body>
+</html>

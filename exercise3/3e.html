@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3e</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    function ButtonHandler({count, setCount}){
+      
+      
+      const timeWord = count === 1 ? 'time':'times';
+      function incrementCount(){
+        setCount(count+1);
+      }
+      
+      return(
+        <>
+          <button 
+            onClick={incrementCount}
+          >Clicked {count} {timeWord}</button>
+        </>
+      );
+    }
+    function App(){
+      const [count, setCount] = React.useState(0);
+      return(
+        <>
+          <ButtonHandler 
+            count = {count}
+            setCount = {setCount}
+          />
+          <ButtonHandler 
+            count = {count}
+            setCount = {setCount}
+          />
+        </>
+      );
+    }
+
+
+    root.render(<App />);
+  </script>
+</body>
+</html>

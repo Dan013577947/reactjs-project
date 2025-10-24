@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // Javascript Callbacks
+    // const myNumbers = [4, 1, -20, -7, 5, 9, -6];
+    
+    
+    // const positiveNumbers = removeNeg(myNumbers, (x)=>x>=0);
+    
+    // function removeNeg(myNumbers, callback){
+    //   const myArray = [];
+      
+    //   for(const x of myNumbers){
+    //     if(callback(x)){
+    //       myArray.push(x);
+    //     }
+    //   }
+
+    //   return myArray;
+    // }
+
+    // console.log(positiveNumbers);
+
+    // function callback(){
+    //   console.log(crypto.randomUUID());
+    // }
+
+    // setInterval(()=>{callback();}, 1000);
+
+    //Javascript Promises
+
+    // function myResolve(){
+    //   console
+    // }
+    // let myPromise = new Promise(function(myResolve, myReject){
+    //   myResolve('ok');
+    //   myReject('error');
+
+    // })
+
+    // myPromise.then(
+    //   function(value){},
+    //   function(error){}
+    // )
+
+
+    // function myDisplayer(something){
+    //   console.log(something);
+    // }
+
+    // let myPromise = new Promise(function(myResolve, myReject){
+    //   let x = 0;
+      
+    //   x === 0 ? myResolve('Resolved') : myReject('Rejected');
+    // })
+
+
+    // myPromise.then(
+    //   function(value){myDisplayer(value);},
+    //   function(error){myDisplayer(error);}
+    // );
+
+
+    // function myDisplayer(response){
+    //   console.log(response);
+    // }
+
+    // let myPromise = new Promise(function(myResolve, myReject){
+    //   const req = new XMLHttpRequest();
+    //   req.open('Get', 'https://supersimplebackend.dev/', true);
+    //   req.onload = function(){
+    //     req.status == 200 ? myResolve(req.response) : myReject(null);
+    //   }
+
+    //   req.send();
+    // });
+
+    // myPromise.then(
+    //   function(value){myDisplayer(value)},
+    //   function(error){myDisplayer(error)}
+    // );
+
+    //Javascript Asynch
+
+    // function myFunction(){
+    //   return Promise.resolve('Hello');
+    // }
+
+    // myFunction().then(
+    //   function(value){console.log(value)},
+    //   function(error){console.log(error)}
+    // );
+
+    // async function myFunction(){
+    //   return 'Hello';
+    // }
+
+    // myFunction().then(
+    //   function(value){console.log(value)},
+    //   function(error){console.log(error)}
+    // );
+
+    // function myDisplayer(something){
+    //   console.log(something);
+    // }
+
+    // async function myFunction(){
+    //   return 'Hello'
+    // }
+
+    // myFunction().then(
+    //   function(value){myDisplayer(value)}
+    // );
+
+    //This is the Await with Async Combination
+    // async function myDisplay(){
+    //   let myPromise = new Promise(function(response, reject){
+    //     setTimeout(()=>{response('3 seconds passed')}, 3000);
+    //   });
+
+    //   console.log(await myPromise);
+    // }
+
+    // myDisplay();
+
+    //example of benefits of using await, undefined result if not use await
+    // function myDisplayer(something){
+    //   console.log(something);
+    // }
+
+    // async function myFunction(){
+    //   setTimeout(()=>{return 'Hello'}, 1000);
+    // }
+
+    // myFunction().then(
+    //   function(value){myDisplayer(value)}
+    // );
+
+
+    //Waiting for a backend response with the use of Await and Async
+    //This is the best example of usage of await and async
+    // async function myBackEnd(){
+    //   let myPromise = new Promise((resolve, reject)=>{
+    //     const xhr = new XMLHttpRequest();
+    //     xhr.open('Get', 'https://supersimplebackend.dev/');
+
+    //     xhr.onload = ()=>{
+    //       xhr.status == 200 && resolve(xhr.response);
+    //     }
+        
+    //     xhr.send();
+    //   });
+
+    //   console.log(await myPromise);
+
+      
+    // }
+
+    // myBackEnd();
+
+  </script>
+</body>
+</html>

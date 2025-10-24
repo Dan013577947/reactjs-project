@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2d</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    function Header(){
+      return (
+        <>
+          <p>Hello, welcome to my website</p>
+        </>
+      );
+    } 
+
+
+    function LoginForm(){
+      return(
+        <>
+          <div><input type="Email" placeholder="Email" /></div>
+          <div><input type="Password" placeholder="Password" /></div>
+          <button>Login</button>
+          <button>Sign up</button>
+        </>
+      );
+    }
+    
+    function App(){
+      return(
+        <>
+          <Header />
+          <LoginForm />
+        </>
+      );
+    }
+    
+    root.render(<App />);
+
+  </script>
+</body>
+</html>

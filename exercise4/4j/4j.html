@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4j</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+  <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+    
+    //ChatInput Component
+    function ChatInput({chatMessages, setChatMessage, inputText, setInputText, isLoading, setIsLoading}){
+      
+      function saveInput(event){
+        setInputText(event.target.value);
+      }
+
+      
+      async function chatbotMessage(inputText){    
+        setIsLoading(true);
+        const botResponse = await Chatbot.getResponseAsync(inputText); 
+        botResponse ? setIsLoading(false) : setIsLoading(true);
+        setChatMessage(chatMessages=>{
+          
+          const filteredChatMessages = chatMessages.filter(item => item.message !== 'Loading...'
+          );
+
+          return [...filteredChatMessages, {
+          message: botResponse,
+          sender:'robot',
+          id:crypto.randomUUID()
+        }]});
+      }
+      
+      /*used updater chatMessages =>[...chatMessages] to fix the chatMessages values
+      which don't save user messages*/
+      
+      function sendMessage(){
+       
+        setChatMessage(chatMessages=>[...chatMessages, {
+          message:inputText,
+          sender:'user',
+          id:crypto.randomUUID()
+        }, {
+          message:'Loading...',
+          sender:'robot',
+          id:crypto.randomUUID()
+        }]);
+
+        
+        chatbotMessage(inputText);
+        setInputText('');
+      }
+      
+      function enterKeyDown(event){
+        event.key === 'Enter' ? sendMessage():null;
+        event.key === 'Escape' ? setInputText(''):null;
+      }
+      
+      return (
+        <div className="div-chat-input">
+          <input 
+            type="text" 
+            placeholder="Send a message to Chatbot" 
+            size="30" 
+            onChange={saveInput}
+            value={inputText}
+            onKeyDown={enterKeyDown}
+            className="chat-input"
+          />
+          <button
+            onClick={sendMessage}
+            className="chat-send"
+          >Send</button>
+        </div>
+      );
+    }
+
+    //ChatMessage Component
+    function ChatMessage({chatMessages, setChatMessage, inputText, setInputText, chatMessageRef}){
+
+      React.useEffect(()=>{
+        const chatMessageElem = chatMessageRef.current;
+        chatMessageElem.scrollTop = chatMessageElem.scrollHeight;
+      }, [chatMessages]);
+      
+      return(chatMessages.map((item)=>{
+        return item.sender === 'user' 
+        ? (<div 
+            key={item.id}
+            className="chat-user">
+            <div className="chat-message-user">{item.message}</div>
+            <img src="user.png" alt="user" width="50"/>
+          </div>)
+        : (<div key={item.id}
+            className="chat-robot">
+            <img src="robot.png" alt="robot" width="50"/>
+            <div className="chat-message-robot">{item.message}</div>
+          </div>);
+      }));
+    }
+  
+    function App(){
+      const [inputText, setInputText] = React.useState('');
+      const [chatMessages, setChatMessage] = React.useState([]);
+      const [isLoading, setIsLoading] = React.useState(false);
+      const chatMessageRef = React.useRef(null);
+
+      const welcomeText =  chatMessages.length === 0 
+        ? "Welcome to the chatbot project! Send a message using the textbox below."
+        :"";
+      
+      return isLoading || !inputText
+      ? (
+          <div className="div-chat-container">
+            
+            <div 
+              className="chat-message"
+              ref={chatMessageRef}
+            >
+              <p
+                className="welcome-text"
+              >{welcomeText}</p>
+              <ChatMessage 
+                chatMessages={chatMessages}
+                setChatMessage={setChatMessage}
+                inputText={inputText}
+                setInputText={setInputText} 
+                chatMessageRef={chatMessageRef}
+              />
+              
+            </div>
+            <ChatInput 
+              inputText={inputText}
+              setInputText={setInputText} 
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+          </div>
+        )
+      : (
+          <div className="div-chat-container">
+            
+            <div 
+              className="chat-message" 
+              ref = {chatMessageRef}
+            >
+              <p
+                className="welcome-text"
+              >{welcomeText}</p>
+              <ChatMessage 
+                chatMessages={chatMessages}
+                setChatMessage={setChatMessage}
+                inputText={inputText}
+                setInputText={setInputText} 
+                chatMessageRef={chatMessageRef}
+              />
+            
+            </div>
+            <ChatInput 
+              chatMessages={chatMessages}
+              setChatMessage={setChatMessage}
+              inputText={inputText}
+              setInputText={setInputText} 
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
+            />
+            
+          </div>
+        );
+    }
+    
+    root.render(<App />);
+
+  </script>
+</body>
+</html>

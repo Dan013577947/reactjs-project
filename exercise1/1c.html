@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1c</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <script type="text/jsx">
+    const app = document.getElementById('app');
+    const root = ReactDOM.createRoot(app);
+    const div = (
+      <div>
+        <p>Cotton socks</p>
+        <p>Price: $10</p>
+        <button>Add to Cart</button>
+      </div>
+    );
+
+    root.render(div);
+  </script>
+</body>
+</html>

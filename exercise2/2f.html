@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2f</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="text/jsx">
+    const container = document.getElementById('container');
+    const root = ReactDOM.createRoot(container);
+
+    function ProductDetails({productName, productPrice, discountPrice, imageSrc}){
+     
+      const returnValue = discountPrice
+      ? <div>
+          <img src={imageSrc} width="200px" />
+          <p>{productName}</p>
+          <del><p>Price: ${(productPrice/100).toFixed(2)}</p></del>
+          <p>Discount Price: ${(discountPrice/100).toFixed(2)}</p>
+          <button>Add to Cart</button>
+        </div>
+      : <div>
+          <img src={imageSrc} width="200px" />
+          <p>{productName}</p>
+          <p>Price: ${(productPrice/100).toFixed(2)}</p>
+          <button>Add to Cart</button>
+        </div>
+      return returnValue;
+    }
+    function App(){
+      return(
+        <>
+          <ProductDetails productName="Cotton socks" productPrice="1090" discountPrice="545" imageSrc="./images/cotton-socks.png"/>
+          <ProductDetails productName="Tennis balls" productPrice="600" imageSrc="./images/tennis-balls.png"/>
+          <ProductDetails productName="Plain T-shirt" productPrice="799" imageSrc="./images/plain-t-shirt.png"/>
+        </>
+      );
+    }
+    
+    root.render(<App />);
+
+  </script>
+</body>
+</html>

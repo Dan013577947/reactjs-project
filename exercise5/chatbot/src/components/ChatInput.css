@@ -1,0 +1,38 @@
+
+.div-chat-container{
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto; 
+  height: 100vh;  
+}
+
+.div-chat-input{
+  display: flex;
+  margin-bottom: 60px;
+}
+
+.chat-input{
+  font-size: 15px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-width: 1px;
+  flex-grow:1;
+}
+
+.chat-send,
+.chat-clear{
+  background-color: rgb(25, 135, 84);
+  color: white;
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-left: 12px;
+}
+
+.chat-clear{
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
