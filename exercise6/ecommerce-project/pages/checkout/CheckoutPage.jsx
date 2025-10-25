@@ -6,39 +6,42 @@ import { formatMoney } from '../utils/formatMoney'
 import dayjs from 'dayjs'
 
 function CheckoutPage() {
-  
+
   const [cartItems, setCartItems] = useState([]);
   const [deliveryOptions, setDeliveryOptions] = useState([]);
 
   useEffect(() => {
     const getCheckoutData = async () => {
-      let response = await axios.get('/api/cart-items?expand=product');
-      setCartItems(response.data);
+      const responseCart = await axios.get('/api/cart-items?expand=product');
+      setCartItems(responseCart.data);
 
-      response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
-      setDeliveryOptions(response.data);
+      const responseDeliveryOptions = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
+      setDeliveryOptions(responseDeliveryOptions.data);
     }
 
     getCheckoutData();
   }, []);
-  const [deliveryDate, setDeliveryDate] = useState('');
 
- 
   return (
     <>
+
       <link rel="icon" type="image/svg+xml" href="/cart-favicon.png" />
       <title>Checkout</title>
+
       <CheckoutPageHeader />
       <div className="checkout-page">
         <div className="page-title">Review your order</div>
         <div className="checkout-grid">
           <div className="order-summary">
-            {cartItems.map((cart) => {
+            {deliveryOptions.length > 0 && cartItems.map((cart) => {
+              const selectedDeliveryOption = deliveryOptions.find((deliveryOption)=>{
+                return deliveryOption.id == cart.deliveryOptionId
+              })
               return (
                 <div key={cart.id} className="cart-item-container">
-
+                  
                   <div className="delivery-date">
-                    Delivery date: {deliveryDate}
+                    Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
                   </div>
 
                   <div className="cart-item-details-grid">
@@ -70,16 +73,14 @@ function CheckoutPage() {
                         Choose Link delivery option:
                       </div>
                       {deliveryOptions.map((option) => {
+
                         return (
                           <div key={option.id} className="delivery-option">
                             <input type="radio"
-                              defaultChecked = {option.id === '1'}
                               className="delivery-option-input"
                               name={`delivery-option-${cart.deliveryOptionId}`}
-                              onChange={(event)=>{
-                                setDeliveryDate(event.target.value);
-                              }}
-                              value={dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM d')} />
+                              checked={option.id == cart.deliveryOptionId}
+                            />
                             <div>
                               <div className="delivery-option-date">
                                 {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM d')}
