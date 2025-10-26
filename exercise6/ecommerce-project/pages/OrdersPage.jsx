@@ -6,7 +6,7 @@ import { Fragment, useEffect, useState } from 'react'
 import dayjs from 'dayjs'
 import { formatMoney } from './utils/FormatMoney'
 
-function OrdersPage() {
+function OrdersPage({cart}) {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -17,11 +17,12 @@ function OrdersPage() {
     getOrdersData();
   }, [])
 
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="/orders-favicon.png" />
       <title>Orders</title>
-      <Header />
+      <Header cart={cart} />
       <div className="orders-page">
         <div className="page-title">Your Orders</div>
 
