@@ -2,23 +2,9 @@ import { NavLink } from 'react-router'
 import WhiteLogo from '../src/assets/images/logo-white.png'
 import MobileLogo from '../src/assets/images/mobile-logo-white.png'
 import './Header.css'
-import { useEffect, useState } from 'react';
+import totalQuantity from './TotalQuantity';
 
 function Header({cart}) {
-
-  const [totalQuantity, setTotalQuantity] = useState(0);
-
-  useEffect(()=>{
-    let total = 0;
-
-    cart.forEach((item)=>{
-      total += item.quantity;
-    })
-    setTotalQuantity(total);
-
-  },[cart]);
-
-
   return (
     <>
       <div className="header">
@@ -47,7 +33,7 @@ function Header({cart}) {
 
           <NavLink className="cart-link header-link" to="/checkout">
             <img className="cart-icon" src="images/icons/cart-icon.png" />
-            <div className="cart-quantity">{totalQuantity}</div>
+            <div className="cart-quantity">{totalQuantity(cart)}</div>
             <div className="cart-text">Cart</div>
           </NavLink>
         </div>

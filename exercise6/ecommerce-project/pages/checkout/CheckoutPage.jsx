@@ -4,20 +4,26 @@ import CheckoutPageHeader from './CheckoutPageHeader'
 import axios from 'axios'
 import { formatMoney } from '../utils/FormatMoney'
 import dayjs from 'dayjs'
+import totalQuantity from '../../components/TotalQuantity';
 
 function CheckoutPage({cart}) {
 
   const [deliveryOptions, setDeliveryOptions] = useState([]);
+  const [paymentSummary, setPaymentSummary] = useState([]);
 
   useEffect(() => {
     
-    const getDeliveryOptionsData = async () =>{
+    const getDeliveryOptionsPaymentSummaryData = async () =>{
       const responseDeliveryOptions = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
       setDeliveryOptions(responseDeliveryOptions.data);
+
+      const responsePaymentSummary = await axios.get('/api/payment-summary');
+      setPaymentSummary(responsePaymentSummary);
     };
 
-    getDeliveryOptionsData();
+    getDeliveryOptionsPaymentSummaryData();
   }, []);
+
   return (
     <>
 
@@ -33,7 +39,6 @@ function CheckoutPage({cart}) {
               const selectedDeliveryOption = deliveryOptions.find((deliveryOption)=>{
                 return deliveryOption.id == cart.deliveryOptionId
               })
-              console.log(selectedDeliveryOption);
               return (
                 <div key={cart.id} className="cart-item-container">
                   
@@ -105,7 +110,7 @@ function CheckoutPage({cart}) {
             </div>
 
             <div className="payment-summary-row">
-              <div>Items (3):</div>
+              <div>Items ({totalQuantity(cart)}):</div>
               <div className="payment-summary-money">$42.75</div>
             </div>
 

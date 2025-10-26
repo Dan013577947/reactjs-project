@@ -2,19 +2,9 @@ import { Link } from 'react-router'
 import './CheckoutPageHeader.css'
 import Logo from '../../src/assets/images/logo.png'
 import MobileLogo from '../../src/assets/images/mobile-logo.png'
-import { useState, useEffect } from 'react'
+import totalQuantity from '../../components/TotalQuantity';
 function CheckoutPageHeader({ cart }) {
-  const [totalQuantity, setTotalQuantity] = useState(0);
-
-  useEffect(() => {
-    let total = 0;
-
-    cart.forEach((item) => {
-      total += item.quantity;
-    })
-    setTotalQuantity(total);
-
-  }, [cart]);
+  
   return (
     <>
       <div className="checkout-header">
@@ -28,7 +18,7 @@ function CheckoutPageHeader({ cart }) {
 
           <div className="checkout-header-middle-section">
             Checkout (<Link className="return-to-home-link"
-              to="/">{totalQuantity} items</Link>)
+              to="/">{totalQuantity(cart)} items</Link>)
           </div>
 
           <div className="checkout-header-right-section">
