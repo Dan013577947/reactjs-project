@@ -6,7 +6,7 @@ import { formatMoney } from '../utils/FormatMoney'
 import dayjs from 'dayjs'
 
 function CheckoutPage({cart}) {
-  
+
   const [deliveryOptions, setDeliveryOptions] = useState([]);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function CheckoutPage({cart}) {
       <link rel="icon" type="image/svg+xml" href="/cart-favicon.png" />
       <title>Checkout</title>
 
-      <CheckoutPageHeader />
+      <CheckoutPageHeader cart={cart} />
       <div className="checkout-page">
         <div className="page-title">Review your order</div>
         <div className="checkout-grid">
@@ -33,6 +33,7 @@ function CheckoutPage({cart}) {
               const selectedDeliveryOption = deliveryOptions.find((deliveryOption)=>{
                 return deliveryOption.id == cart.deliveryOptionId
               })
+              console.log(selectedDeliveryOption);
               return (
                 <div key={cart.id} className="cart-item-container">
                   
@@ -69,7 +70,7 @@ function CheckoutPage({cart}) {
                         Choose Link delivery option:
                       </div>
                       {deliveryOptions.map((option) => {
-
+                        
                         return (
                           <div key={option.id} className="delivery-option">
                             <input type="radio"
@@ -79,7 +80,7 @@ function CheckoutPage({cart}) {
                             />
                             <div>
                               <div className="delivery-option-date">
-                                {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM d')}
+                                {dayjs(option.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
                               </div>
                               <div className="delivery-option-price">
                                 {`${(option.priceCents && formatMoney(option.priceCents)) || 'Free'} - Shipping`}
