@@ -26,6 +26,7 @@ function App() {
       const response = await axios.get('/api/orders?expand=products');
       setOrders(response.data);
     }
+    
     getOrdersData();
   }, [])
   return(

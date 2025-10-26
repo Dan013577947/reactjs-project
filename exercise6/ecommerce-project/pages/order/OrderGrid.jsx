@@ -35,7 +35,8 @@ function OrderGrid({order}) {
                   orderName: product.product.name,
                   orderQuantity: product.quantity,
                   orderImage: product.product.image,
-                  orderEstimatedDeliveryTimeMs: product.estimatedDeliveryTimeMs
+                  orderEstimatedDeliveryTimeMs: product.estimatedDeliveryTimeMs,
+                  orderTimeMs:order.orderTimeMs
                 }}
               >
                 <button
