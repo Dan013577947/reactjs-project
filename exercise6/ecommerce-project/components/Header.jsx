@@ -2,7 +2,7 @@ import { NavLink } from 'react-router'
 import WhiteLogo from '../src/assets/images/logo-white.png'
 import MobileLogo from '../src/assets/images/mobile-logo-white.png'
 import './Header.css'
-import totalQuantity from './TotalQuantity';
+import {totalQuantity} from '../pages/utils/totalQuantity';
 
 function Header({cart}) {
   return (

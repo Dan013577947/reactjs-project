@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import './CheckoutPageHeader.css'
 import Logo from '../../src/assets/images/logo.png'
 import MobileLogo from '../../src/assets/images/mobile-logo.png'
-import totalQuantity from '../../components/TotalQuantity';
+import {totalQuantity} from '../utils/totalQuantity';
 function CheckoutPageHeader({ cart }) {
   
   return (

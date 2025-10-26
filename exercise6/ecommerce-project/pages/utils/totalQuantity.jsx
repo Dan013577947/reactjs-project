@@ -1,4 +1,4 @@
-function totalQuantity(cart){
+export function totalQuantity(cart){
   let total = 0;
 
   cart.forEach((item) => {
@@ -7,5 +7,3 @@ function totalQuantity(cart){
 
   return total
 }
-
-export default totalQuantity

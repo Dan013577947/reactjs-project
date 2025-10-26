@@ -1,23 +1,12 @@
-import { Link } from 'react-router'
-import axios from 'axios'
+import { Link } from 'react-router-dom'
 import Header from '../components/Header'
 import './OrdersPage.css'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment } from 'react'
 import dayjs from 'dayjs'
 import { formatMoney } from './utils/FormatMoney'
 
-function OrdersPage({cart}) {
-  const [orders, setOrders] = useState([]);
-
-  useEffect(() => {
-    const getOrdersData = async () => {
-      const response = await axios.get('/api/orders?expand=products');
-      setOrders(response.data);
-    }
-    getOrdersData();
-  }, [])
-
-
+function OrdersPage({cart, orders}) {
+  
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="/orders-favicon.png" />
@@ -61,7 +50,7 @@ function OrdersPage({cart}) {
                             {product.product.name}
                           </div>
                           <div className="product-delivery-date">
-                            Arriving on: {dayjs(product.estimatedDeliveryTimeMs).format('MMMM d')}
+                            Arriving on: {dayjs(product.estimatedDeliveryTimeMs).format('MMMM D')}
                           </div>
                           <div className="product-quantity">
                             Quantity: {product.quantity}
@@ -73,8 +62,17 @@ function OrdersPage({cart}) {
                         </div>
 
                         <div className="product-actions">
-                          <Link to="/tracking">
-                            <button className="track-package-button button-secondary">
+                          <Link 
+                            to="/tracking"
+                            state={{
+                              orderName:product.product.name,
+                              orderQuantity:product.quantity,
+                              orderImage:product.product.image,
+                              orderEstimatedDeliveryTimeMs:product.estimatedDeliveryTimeMs
+                            }}
+                          >
+                            <button 
+                            className="track-package-button button-secondary">
                               Track package
                             </button>
                           </Link>

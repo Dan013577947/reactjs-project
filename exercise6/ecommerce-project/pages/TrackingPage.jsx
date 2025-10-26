@@ -1,12 +1,17 @@
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router-dom'
 import Header from '../components/Header'
 import './TrackingPage.css'
-function TrackingPage() {
+import dayjs from 'dayjs';
+function TrackingPage({ cart }) {
+
+  const location = useLocation();
+  const { orderName, orderQuantity, orderImage, orderEstimatedDeliveryTimeMs } = location.state || {};
+
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="/tracking-favicon.png" />
       <title>Tracking</title>
-      <Header />
+      <Header cart={cart} />
       <div className="tracking-page">
         <div className="order-tracking">
           <Link className="back-to-orders-link link-primary" to="/orders">
@@ -14,18 +19,18 @@ function TrackingPage() {
           </Link>
 
           <div className="delivery-date">
-            Arriving on Monday, June 13
+            Arriving on {dayjs(orderEstimatedDeliveryTimeMs).format('dddd, MMMM D')}
           </div>
 
           <div className="product-info">
-            Black and Gray Athletic Cotton Socks - 6 Pairs
+            {orderName}
           </div>
 
           <div className="product-info">
-            Quantity: 1
+            Quantity: {orderQuantity}
           </div>
 
-          <img className="product-image" src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+          <img className="product-image" src={orderImage} />
 
           <div className="progress-labels-container">
             <div className="progress-label">
