@@ -1,8 +1,21 @@
 import Header from '../components/Header'
 import { formatMoney } from './utils/FormatMoney'
 import './HomePage.css'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
-function HomePage({ products }) {
+function HomePage({cart}) {
+  
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+    const getProductsData = async () => {
+      const response = await axios.get('/api/products');
+      setProducts(response.data);
+    }
+    getProductsData();
+    
+  },[]);  
 
   return (
     <>

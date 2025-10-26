@@ -5,28 +5,26 @@ import CheckoutPage from '../pages//checkout/CheckoutPage'
 import TrackingPage from '../pages/TrackingPage'
 import PageNotFound from '../pages/PageNoFound'
 import './App.css'
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 function App() {
-  const [products, setProducts] = useState([]);
-
+  const [cart, setCart] = useState([]);
+  
   useEffect(()=>{
-    const getProductsData = async () => {
-      const response = await axios.get('/api/products');
-      setProducts(response.data);
+    const getCheckoutData = async () => {
+      const responseCart = await axios.get('/api/cart-items?expand=product');
+      setCart(responseCart.data);
     }
-    getProductsData();
-    
-  },[]);  
-
+    getCheckoutData();
+  },[]);
   return(
     <Routes>
       <Route index element={
-        <HomePage products={products} />}
+        <HomePage cart={cart} />}
       />
       <Route path="/orders" element={<OrdersPage />}/>
-      <Route path="/checkout" element={<CheckoutPage />}/>
+      <Route path="/checkout" element={<CheckoutPage cart={cart} />}/>
       <Route path="/tracking" element={<TrackingPage />}/>
       <Route path="*" element={<PageNotFound />}/>
     </Routes>

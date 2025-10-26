@@ -2,26 +2,22 @@ import { useEffect, useState } from 'react';
 import './CheckoutPage.css'
 import CheckoutPageHeader from './CheckoutPageHeader'
 import axios from 'axios'
-import { formatMoney } from '../utils/formatMoney'
+import { formatMoney } from '../utils/FormatMoney'
 import dayjs from 'dayjs'
 
-function CheckoutPage() {
-
-  const [cartItems, setCartItems] = useState([]);
+function CheckoutPage({cart}) {
+  
   const [deliveryOptions, setDeliveryOptions] = useState([]);
 
   useEffect(() => {
-    const getCheckoutData = async () => {
-      const responseCart = await axios.get('/api/cart-items?expand=product');
-      setCartItems(responseCart.data);
-
+    
+    const getDeliveryOptionsData = async () =>{
       const responseDeliveryOptions = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime');
       setDeliveryOptions(responseDeliveryOptions.data);
-    }
+    };
 
-    getCheckoutData();
+    getDeliveryOptionsData();
   }, []);
-
   return (
     <>
 
@@ -33,7 +29,7 @@ function CheckoutPage() {
         <div className="page-title">Review your order</div>
         <div className="checkout-grid">
           <div className="order-summary">
-            {deliveryOptions.length > 0 && cartItems.map((cart) => {
+            {deliveryOptions.length > 0 && cart.map((cart) => {
               const selectedDeliveryOption = deliveryOptions.find((deliveryOption)=>{
                 return deliveryOption.id == cart.deliveryOptionId
               })
