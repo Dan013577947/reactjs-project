@@ -3,7 +3,7 @@ import CheckoutPageHeader from './CheckoutPageHeader'
 import OrderSummary from './OrderSummary';
 import PaymentSummary from './PaymentSummary';
 
-function CheckoutPage({ cart, loadCart, loadOrders }) {
+function CheckoutPage({ cart, loadCart }) {
   return (
     <>
       <link rel="icon" type="image/svg+xml" href="/cart-favicon.png" />
@@ -14,7 +14,7 @@ function CheckoutPage({ cart, loadCart, loadOrders }) {
         <div className="page-title">Review your order</div>
         <div className="checkout-grid">
           <OrderSummary cart={cart} loadCart={loadCart} />
-          <PaymentSummary cart={cart} loadCart={loadCart} loadOrders={loadOrders} />
+          <PaymentSummary cart={cart} loadCart={loadCart} />
         </div>
       </div>
     </>

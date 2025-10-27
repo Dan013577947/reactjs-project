@@ -1,26 +1,32 @@
 import axios from 'axios'
 import { formatMoney } from '../utils/FormatMoney'
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router'
 
-function PaymentSummary({cart, loadCart, loadOrders}) {
+function PaymentSummary({ cart, loadCart, loadOrders }) {
   const [paymentSummary, setPaymentSummary] = useState([]);
 
+  const getPaymentSummaryData = async () => {
+
+    const responsePaymentSummary = await axios.get('/api/payment-summary');
+    setPaymentSummary(responsePaymentSummary.data);
+
+    await loadCart();
+  };
+
   useEffect(() => {
-    const getPaymentSummaryData = async () => {
+    getPaymentSummaryData();
+  }, []);
 
-      const responsePaymentSummary = await axios.get('/api/payment-summary');
-      setPaymentSummary(responsePaymentSummary.data);
-
-      await loadCart();
-    };
-
+  useEffect(() => {
     getPaymentSummaryData();
   }, [cart]);
 
+
+
   const navigate = useNavigate();
 
-  const createOrder = async () =>{
+  const createOrder = async () => {
     await axios.post('/api/orders');
     loadOrders();
     navigate('/orders');
