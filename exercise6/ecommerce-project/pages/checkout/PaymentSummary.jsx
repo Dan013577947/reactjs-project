@@ -2,19 +2,20 @@ import axios from 'axios'
 import { formatMoney } from '../utils/FormatMoney'
 import {  useEffect, useState } from 'react';
 
-function PaymentSummary() {
+function PaymentSummary({cart, loadCart}) {
   const [paymentSummary, setPaymentSummary] = useState([]);
 
   useEffect(() => {
-
     const getPaymentSummaryData = async () => {
 
       const responsePaymentSummary = await axios.get('/api/payment-summary');
       setPaymentSummary(responsePaymentSummary.data);
+
+      await loadCart();
     };
 
     getPaymentSummaryData();
-  }, []);
+  }, [cart]);
   return (
     <div className="payment-summary">
       <div className="payment-summary-title">

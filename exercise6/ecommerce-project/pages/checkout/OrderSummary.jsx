@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios'
 import { formatMoney } from '../utils/FormatMoney';
 
-function OrderSummary({cart}) {
+function OrderSummary({ cart, loadCart }) {
   const [deliveryOptions, setDeliveryOptions] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,9 @@ function OrderSummary({cart}) {
       {deliveryOptions.length > 0 && cart.map((cart) => {
         const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
           return deliveryOption.id == cart.deliveryOptionId
-        })
+        });
+
+
         return (
           <div key={cart.id} className="cart-item-container">
 
@@ -58,13 +60,21 @@ function OrderSummary({cart}) {
                   Choose Link delivery option:
                 </div>
                 {deliveryOptions.map((option) => {
-
+                  const updateDeliveryOption = async () => {
+                    await axios.put(`/api/cart-items/${cart.productId}`, {
+                      quantity: cart.quantity,
+                      deliveryOptionId: option.id
+                    });
+                    await loadCart();
+                  };
                   return (
-                    <div key={option.id} className="delivery-option">
+                    <div key={option.id} className="delivery-option"
+                      onClick={updateDeliveryOption}>
                       <input type="radio"
                         className="delivery-option-input"
-                        name={`delivery-option-${cart.deliveryOptionId}`}
+                        name={`delivery-option-${cart.productId}`}
                         checked={option.id == cart.deliveryOptionId}
+                        onChange={() => {}}
                       />
                       <div>
                         <div className="delivery-option-date">
