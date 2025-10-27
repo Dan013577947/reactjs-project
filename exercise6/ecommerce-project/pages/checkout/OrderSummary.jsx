@@ -23,7 +23,10 @@ function OrderSummary({ cart, loadCart }) {
           return deliveryOption.id == cart.deliveryOptionId
         });
 
-
+        const deleteProduct = async () =>{
+          await axios.delete(`/api/cart-items/${cart.productId}`);
+          await loadCart();
+        };
         return (
           <div key={cart.id} className="cart-item-container">
 
@@ -49,7 +52,7 @@ function OrderSummary({ cart, loadCart }) {
                   <span className="update-quantity-link link-primary">
                     Update
                   </span>
-                  <span className="delete-quantity-link link-primary">
+                  <span onClick={deleteProduct} className="delete-quantity-link link-primary">
                     Delete
                   </span>
                 </div>
