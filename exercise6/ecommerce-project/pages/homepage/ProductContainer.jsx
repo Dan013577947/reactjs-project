@@ -10,12 +10,19 @@ function ProductContainer({ product, loadCart }) {
     setQuantity(selectedQuantity);
   }
 
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const addToCart = async () => {
     await axios.post('/api/cart-items', {
       productId: product.id,
       quantity
     });
     await loadCart();
+
+    setAddedToCart(true);
+    setTimeout(() => {
+      setAddedToCart(false);
+    }, 2000)
   }
 
   return (
@@ -59,7 +66,10 @@ function ProductContainer({ product, loadCart }) {
 
         <div className="product-spacer"></div>
 
-        <div className="added-to-cart">
+        <div style={{
+          opacity: addedToCart === true ? 1 : 0,
+          transition: 'opacity 1s ease'
+        }} className="added-to-cart">
           <img src="images/icons/checkmark.png" />
           Added
         </div>

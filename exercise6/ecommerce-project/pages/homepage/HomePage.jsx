@@ -20,12 +20,10 @@ function HomePage({ cart, loadCart }) {
   useEffect(() => {
     const resetData = async () => {
       window.axios = axios;
-      const response = await axios.post('/api/reset');
-      console.log(response);
-  
+      // const response = await axios.post('/api/reset');
+      // console.log(response);
     }
     resetData();
-
   }, []);
   return (
     <>
