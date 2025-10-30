@@ -10,14 +10,17 @@ function HomePageBody() {
         <h3>And I'm aspirant <span>Front-End Developer</span></h3>
         <p className="home-description">I’m a passionate Frontend Developer who transforms creative ideas into responsive, user-friendly, and visually engaging web experiences. Skilled in HTML, CSS, JavaScript, and React.js.</p>
         <div className="websites-links">
-          <Link className="linkedin-link">
+          <a href="https://www.linkedin.com/in/danilo-alvaro-16b17534b/" target="_blank" className="linkedin-link">
             <i className="fa fa-linkedin"></i>
-          </Link>
-          <Link className="github-link">
+          </a>
+          
+          <a href="https://github.com/Dan013577947" target="_blank" className="github-link">
             <i className="fa fa-github"></i>
-          </Link>
+          </a>
         </div>
-        <button className="btn-dload-resume">Download Resume</button>
+        <a href="/alvaro_danilo_resume.pdf" download="Danilo_Alvaro_Resume.pdf" className="dload-resume">
+          Download Resume
+        </a>
       </div>
       <div className="home-right-section">
         <img src="daniloimage.png" alt="" />
