@@ -1,4 +1,26 @@
-Header{
-  background-color: red;
-  height: 40px;
+.header{
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 100px;
+}
+
+.header-left-section{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-right-section{
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.link{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.active{
+  color: #4ceaff;
 }
