@@ -1,0 +1,11 @@
+.footer{
+  display: flex;
+  position: fixed;
+  height: 50px;
+  width: 1200px;
+  background-color: rgb(43, 42, 54);
+  border-bottom-left-radius: 50px;
+  border-bottom-right-radius: 50px;
+  color: black;
+  bottom: 113px;
+}
