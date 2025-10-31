@@ -1,18 +1,26 @@
 .header{
   display: flex;
-  justify-content: space-between;
   padding: 30px 100px;
+  position: fixed;
+  width: 1000px;
+  justify-content: space-between;
+  background-color: rgb(43, 42, 54);
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
 }
 
 .header-left-section{
   font-size: 20px;
   font-weight: bold;
+  position: relative;
+  
 }
 
 .header-right-section{
   width: 350px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .link{
