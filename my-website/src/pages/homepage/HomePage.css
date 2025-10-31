@@ -1,24 +1,7 @@
-.home-body{
-  display: flex ;
-  padding-top:100px;
-  padding-left: 100px;
-}
-
-h1,h2,h3{
-  font-weight: bold;
-}
-
-h3 span{
-  color:#4ceaff;
-}
-.home-description{
-  color: rgb(173, 173, 173);
-  font-size: 14px;
-  line-height: 17px;
-}
 .home-left-section{
   width: 500px;
 }
+
 .home-right-section {
   background: #4ceaff;
   width: 300px;
@@ -28,7 +11,9 @@ h3 span{
   margin: auto;
   box-shadow: 0px 15px 10px #4ceaff;
   border: none;
+  margin-right: 0;
 }
+
 .home-right-section img{
   object-fit:cover;
   object-position: center;
@@ -36,6 +21,7 @@ h3 span{
   height: 100%;
   margin-top: 10px;
 }
+
 
 .websites-links{
   display: flex;
@@ -48,15 +34,11 @@ h3 span{
 
 .linkedin-link,
 .github-link{
-  color: #4ceaff;
+  
   border: 1px solid #4ceaff;
   border-radius: 50%;
 }
 
-.fa{
-  font-size: 17px;
-  padding: 10px 12px;
-}
 
 
 .dload-resume{
@@ -72,5 +54,10 @@ h3 span{
   text-decoration: none;
 }
 
+
+.fa-home{
+  font-size: 17px;
+  padding: 10px 12px;
+}
 
 

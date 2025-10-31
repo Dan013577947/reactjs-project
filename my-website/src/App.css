@@ -15,3 +15,27 @@
   border: none;
   box-shadow: 0px 0px 70px rgba(0, 0, 0, 1);
 }
+
+.body{
+  display: flex ;
+  padding: 100px;
+  padding-top: 70px;
+}
+
+.highlight{
+  color: #4ceaff;
+  font-weight: bold;
+}
+.description{
+  color: rgb(173, 173, 173);
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.fa-brands,
+.fa-solid{
+  color: #4ceaff;
+}
+
+
+

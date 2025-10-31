@@ -1,9 +1,8 @@
 import './App.css'
 import HomePage from './pages/homepage/HomePage'
 import { Route, Routes } from 'react-router'
-import AboutPage from './pages/AboutPage'
-import SkillsPage from './pages/SkillsPage'
-import ProjectsPage from './pages/ProjectsPage'
+import AboutPage from './pages/aboutpage/AboutPage'
+import ProjectsPage from './pages/projectspages/ProjectsPage'
 import ContactPage from './pages/ContactPage'
 import NotExistingPage from './pages/NotExistingPage'
 
@@ -14,7 +13,6 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage />} />
           <Route path='/about' element={<AboutPage />} />
-          <Route path='/skills' element={<SkillsPage />} />
           <Route path='/projects' element={<ProjectsPage />} />
           <Route path='/contact' element={<ContactPage />} />
         </Routes>
