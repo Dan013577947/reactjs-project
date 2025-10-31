@@ -1,0 +1,34 @@
+.video-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 10px;
+  row-gap: 40px;
+  margin-top: 30px;
+}
+
+.project-title{
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.project-description{
+  color: white;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.airflow-img{
+  width: 48px;
+  vertical-align: middle;
+  margin-bottom: 12px;
+}
+
+.airflow-text{
+  margin-left: -4px;
+}
+
+.fa-projects{
+  font-size: 30px;
+  margin: 0 10px;
+}
+
