@@ -9,6 +9,7 @@
 .project-title{
   margin-top: 6px;
   margin-bottom: 10px;
+  line-height: 30px;
 }
 
 .project-description{
@@ -17,18 +18,21 @@
   line-height: 20px;
 }
 
-.airflow-img{
+.uploaded-img{
   width: 48px;
   vertical-align: middle;
   margin-bottom: 12px;
 }
 
-.airflow-text{
-  margin-left: -4px;
-}
-
 .fa-projects{
   font-size: 30px;
   margin: 0 10px;
+}
+
+.column-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
