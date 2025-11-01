@@ -1,0 +1,36 @@
+.contact-left-section{
+  width: 500px;
+}
+
+.get-in-touch{
+  font-size: 30px;
+}
+
+.contact-message{
+  margin-top: 50px;
+  line-height: 23px;
+}
+
+.fb-resize{
+  width: 90px;
+}
+
+.no-color,
+.no-underline{
+  text-decoration: none;
+  color: white;
+}
+
+.gmail:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.gmail:active{
+  color: #4ceaff;
+}
+
+
+.margin-left-20{
+  margin-left: 20px;
+}

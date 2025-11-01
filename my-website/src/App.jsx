@@ -3,7 +3,7 @@ import HomePage from './pages/homepage/HomePage'
 import { Route, Routes } from 'react-router'
 import AboutPage from './pages/aboutpage/AboutPage'
 import ProjectsPage from './pages/projectspages/ProjectsPage'
-import ContactPage from './pages/ContactPage'
+import ContactPage from './pages/contact/ContactPage'
 import NotExistingPage from './pages/NotExistingPage'
 
 function App() {
@@ -15,6 +15,7 @@ function App() {
           <Route path='/about' element={<AboutPage />} />
           <Route path='/projects' element={<ProjectsPage />} />
           <Route path='/contact' element={<ContactPage />} />
+          <Route path='*' element={<NotExistingPage />} />
         </Routes>
       </div>
 

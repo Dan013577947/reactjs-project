@@ -13,7 +13,6 @@ function HomePageBody() {
           <a href="https://www.linkedin.com/in/danilo-alvaro-16b17534b/" target="_blank" className="linkedin-link">
             <i className="fa-brands fa-home fa-linkedin"></i>
           </a>
-          
           <a href="https://github.com/Dan013577947" target="_blank" className="github-link">
             <i className="fa-brands fa-home fa-github"></i>
           </a>

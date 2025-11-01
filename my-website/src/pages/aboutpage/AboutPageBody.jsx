@@ -3,7 +3,7 @@
 function AboutPageBody() {
   return (
     <div className="body">
-      <div className="left-section">
+      <div>
         <h3>My Journey</h3>
         <p className="description">
           My interest in web development began with a simple curiosity about how websites work. I started experimenting with HTML and CSS, and over time, I discovered how powerful JavaScript and React can be in creating dynamic, interactive interfaces.
